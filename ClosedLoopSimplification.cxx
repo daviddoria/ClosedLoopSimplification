@@ -33,30 +33,22 @@
 #include <vtkProperty.h>
 #include <vtkXMLPolyDataWriter.h>
 
-std::vector<unsigned int> OutlineApproximation(vtkPolyData* points, float straightnessErrorTolerance)
+void OutlineApproximation(vtkPolyData* inputContour, float straightnessErrorTolerance, vtkPolyData* simplifiedContour)
 {
-  // Inputs: graphPolyData
-  // Outputs: std::vector<unsigned int> path
-  
-  std::vector<unsigned int> roughOrder;
-  
-  Helpers::WritePathAsLines(roughOrder, points, "rough.vtp");
-  
-  // Create a graph from the initial rough order
+  // Create a graph from the input contour
   Graph g;
   
   // We must add vertices from the original rough outline twice (the reason for this is explained later)!
-  
   for(unsigned int loopCounter = 0; loopCounter < 2; ++loopCounter)
     {
-    for(unsigned int i = 0; i < roughOrder.size(); ++i)
+    inputContour->GetLines()->InitTraversal();
+    vtkSmartPointer<vtkIdList> idList = vtkSmartPointer<vtkIdList>::New();
+    while(inputContour->GetLines()->GetNextCell(idList))
       {
       Graph::vertex_descriptor v = boost::add_vertex(g);
-      g[v].PointId = roughOrder[i];
+      g[v].PointId = idList->GetId(0);
       }
     }
-  
-  //std::cout << "Size of 'vertices': " << boost::num_vertices(g) << std::endl;
     
   // Add weighted edges between adjacent vertices
   for(unsigned int i = 0; i < boost::num_vertices(g) - 1; ++i)
@@ -64,35 +56,37 @@ std::vector<unsigned int> OutlineApproximation(vtkPolyData* points, float straig
     unsigned int currentVertexId = i;
     unsigned int nextVertexId = i+1;
   
-    float distance = Helpers::GetDistanceBetweenPoints(points, g[currentVertexId].PointId, g[nextVertexId].PointId);
+    float distance = Helpers::GetDistanceBetweenPoints(inputContour, g[currentVertexId].PointId, g[nextVertexId].PointId);
 
     EdgeWeightProperty weight(distance);
     boost::add_edge(currentVertexId, nextVertexId, weight, g);
     //std::cout << "Added edge between vertices " << currentVertexId << " and " << nextVertexId
 	//      << " which corresponds to points " << g[currentVertexId].PointId << " and " << g[nextVertexId].PointId << std::endl;
     }
-  
+  /*
   // Close the second loop
   boost::add_edge(boost::num_vertices(g) - 1, 0, 
-		  Helpers::GetDistanceBetweenPoints(points, g[boost::num_vertices(g) - 1].PointId, g[0].PointId), g);
-  
-  WriteGraph(g, points, "OutlineGraph.vtp");
+		  Helpers::GetDistanceBetweenPoints(inputContour, g[boost::num_vertices(g) - 1].PointId, g[0].PointId), g);
+  */
+  // This is just to ensure we built the graph properly - it should be identical to the inputContour
+  WriteGraph(g, inputContour, "OutlineGraph.vtp");
   
   // Add all other edges which pass the straightness test
-  
+  // We loop over all possible 'start' and 'end' vertices and determine if their
+  // edge meets the requirements to be added to the graph
   for(unsigned int start = 0; start < boost::num_vertices(g); ++start)
     {
     for(unsigned int end = start+1; end < boost::num_vertices(g); ++end)
       {
-      float error = StraightnessError(g, points, start, end);
+      float error = StraightnessError(g, inputContour, start, end);
       if(error < straightnessErrorTolerance)
 	{
 	// Add an edge between start and end
 	double startPoint[3];
 	double endPoint[3];
 	
-	points->GetPoint(g[start].PointId, startPoint);
-	points->GetPoint(g[end].PointId, endPoint);
+	inputContour->GetPoint(g[start].PointId, startPoint);
+	inputContour->GetPoint(g[end].PointId, endPoint);
 	float distance = sqrt(vtkMath::Distance2BetweenPoints(startPoint, endPoint));
 
 	EdgeWeightProperty weight(distance);
@@ -102,11 +96,27 @@ std::vector<unsigned int> OutlineApproximation(vtkPolyData* points, float straig
       }
     }
 
-  WriteGraph(g, points, "StraigtnessGraph.vtp");
+  // This graph shows all of the edges in the graph that the shortest path operations are performed on
+  WriteGraph(g, inputContour, "StraigtnessGraph.vtp");
 
   std::vector<unsigned int> approximateOutline = GetShortestClosedLoop(g);
   
-  return approximateOutline;
+  // Create a polydata contour of the approximate outline
+  vtkSmartPointer<vtkCellArray> lines = vtkSmartPointer<vtkCellArray>::New();
+  for(unsigned int i = 0; i < approximateOutline.size() - 1; ++i)
+    {
+    vtkSmartPointer<vtkLine> line = vtkSmartPointer<vtkLine>::New();
+ 
+    line->GetPointIds()->SetId(0,approximateOutline[i]);
+    line->GetPointIds()->SetId(1,approximateOutline[i+1]);
+    lines->InsertNextCell(line);
+    
+    //std::cout << "Adding line between " << approximateOutline[i] << " and " << approximateOutline[i+1] << std::endl;
+    }
+   
+  // Add the points and lines to the output
+  simplifiedContour->SetPoints(inputContour->GetPoints());
+  simplifiedContour->SetLines(lines);
 }
 
 float StraightnessError(Graph g, vtkPolyData* points, unsigned int startId, unsigned int endId)
@@ -148,7 +158,7 @@ std::vector<unsigned int> GetShortestClosedLoop(Graph& g)
   for(unsigned int i = 0; i < numberOfPoints; ++i)
     {
     float distance = Helpers::GetShortestPathDistance(g, i, i + numberOfPoints);
-    std::cout << "Distance between " << i << " and " << i + numberOfPoints << " is " << distance << std::endl;
+    //std::cout << "Distance between " << i << " and " << i + numberOfPoints << " is " << distance << std::endl;
   
     if(distance < shortestPathDistance)
       {
@@ -183,7 +193,6 @@ void WriteGraph(Graph& g, vtkPolyData* points, std::string filename)
     
     //std::cout << "Adding line between " << sourcePointId << " and " << targetPointId << std::endl;
     }
-  std::cout << std::endl;
   
   // Create a polydata to store everything in
   vtkSmartPointer<vtkPolyData> polyData = 

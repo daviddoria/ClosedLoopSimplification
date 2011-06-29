@@ -17,75 +17,9 @@
 namespace Helpers
 {
 
-void PixelListToPolyData(std::vector<itk::Index<2> > pixelList, vtkSmartPointer<vtkPolyData> polydata)
-{
-  vtkSmartPointer<vtkPoints> points = vtkSmartPointer<vtkPoints>::New();
-  for(unsigned int i = 0; i < pixelList.size(); i++)
-    {
-    points->InsertNextPoint(pixelList[i][0], pixelList[i][1], 0);
-    //std::cout << pixelList[i][0] << " " << pixelList[i][1] << std::endl;
-    }
-  polydata->SetPoints(points);
-  //std::cout << "There are " << polydata->GetNumberOfPoints() << " points." << std::endl;
-}
-
-std::vector<itk::Index<2> > BinaryImageToPixelList(ImageType::Pointer image)
-{
-  std::vector<itk::Index<2> > pixelList;
-
-  itk::ImageRegionConstIterator<ImageType> imageIterator(image, image->GetLargestPossibleRegion());
-
-  while(!imageIterator.IsAtEnd())
-    {
-    if(imageIterator.Get() == 0) // All black pixels are considered points
-      {
-      pixelList.push_back(imageIterator.GetIndex());
-      }
-
-    ++imageIterator;
-    }
-    
-  //std::cout << "There are " << pixelList.size() << " points." << std::endl;
-  
-  return pixelList;
-}
-
-
-unsigned int FindKeyByValue(std::map <unsigned int, unsigned int> myMap, unsigned int value)
-{
-  std::map<unsigned int, unsigned int>::const_iterator iterator;
-  for (iterator = myMap.begin(); iterator != myMap.end(); ++iterator)
-    {
-    if (iterator->second == value)
-      {
-      return iterator->first;
-      break;
-      }
-    }
-    
-  std::cout << "Key was not found for value: " << value << std::endl;
-  exit(-1);
-  
-  // Prevent compiler warning about no return value. This should never be reached.
-  return 0;
-}
-  
-unsigned int CountFalse(std::vector<bool> boolVector)
-{
-  unsigned int numberFalse = 0;
-  for(unsigned int i = 0; i < boolVector.size(); ++i)
-    {
-    if(!boolVector[i])
-      {
-      numberFalse++;
-      }
-    }
-  return numberFalse;
-}
-
 std::vector<unsigned int> GetShortestPath(Graph& g, Graph::vertex_descriptor start, Graph::vertex_descriptor end)
 {
-  std::cout << "There are " << boost::num_vertices(g) << " vertices in the graph." << std::endl;
+  //std::cout << "There are " << boost::num_vertices(g) << " vertices in the graph." << std::endl;
   
   // Create things for Dijkstra
   std::vector<Graph::vertex_descriptor> parents(boost::num_vertices(g)); // To store parents

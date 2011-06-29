@@ -41,41 +41,41 @@
 int main(int argc, char *argv[])
 {
   // Verify arguments
-  if(argc < 2)
+  if(argc < 3)
     {
-    std::cerr << "Required arguments: filename [straightnessErrorTolerance]" << std::endl;
+    std::cerr << "Required arguments: inputFileName outputFileName [straightnessErrorTolerance]" << std::endl;
     return EXIT_FAILURE;
     }
     
   // Parse arguments
-  std::string fileName = argv[1];
+  std::string inputFileName = argv[1];
+  std::string outputFileName = argv[2];
   
   float straightnessErrorTolerance = 1.0;
-  if(argc == 3)
-  {
+  if(argc == 4)
+    {
     std::stringstream ss;
     ss << argv[2];
     ss >> straightnessErrorTolerance;
-  }
+    }
   
   // Output arguments
-  std::cout << "Input: " << fileName << std::endl;
+  std::cout << "Input: " << inputFileName << std::endl;
+  std::cout << "Output: " << outputFileName << std::endl;
   std::cout << "Straightness error tolerance: " << straightnessErrorTolerance << std::endl;
   
   vtkSmartPointer<vtkXMLPolyDataReader> reader = vtkSmartPointer<vtkXMLPolyDataReader>::New();
-  reader->SetFileName(fileName.c_str());
+  reader->SetFileName(inputFileName.c_str());
   reader->Update();
   
-  std::vector<unsigned int> shortestPath = OutlineApproximation(reader->GetOutput(), straightnessErrorTolerance);
-  std::cout << "shortestPath has " << shortestPath.size() << " points." << std::endl;
-  
-  std::cout << "shortestPath:" << std::endl;
-  Helpers::OutputVector(shortestPath);
-
-  //Helpers::WritePathAsLines(shortestPath, polydata, "OutlineApproximation.vtp");
-  //WriteGraph(g, polydata, "OutlineApproximation.vtp");
-  
-  //Visualize(polydata, path);
+  vtkSmartPointer<vtkPolyData> simplifiedContour = vtkSmartPointer<vtkPolyData>::New();
+  OutlineApproximation(reader->GetOutput(), straightnessErrorTolerance, simplifiedContour);
  
+  vtkSmartPointer<vtkXMLPolyDataWriter> writer =
+    vtkSmartPointer<vtkXMLPolyDataWriter>::New();
+  writer->SetFileName(outputFileName.c_str());
+  writer->SetInputConnection(simplifiedContour->GetProducerPort());
+  writer->Write();
+  
   return EXIT_SUCCESS;
 }

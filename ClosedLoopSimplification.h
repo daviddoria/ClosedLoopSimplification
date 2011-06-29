@@ -25,7 +25,7 @@
 
 void Visualize(vtkPolyData* graph, vtkPolyData* path);
 
-std::vector<unsigned int> OutlineApproximation(vtkPolyData* points, float straightnessErrorTolerance);
+void OutlineApproximation(vtkPolyData* inputContour, float straightnessErrorTolerance, vtkPolyData* simplifiedContour);
 
 void WriteGraph(Graph& g, vtkPolyData* polydata, std::string filename);
 
