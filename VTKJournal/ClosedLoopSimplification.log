@@ -1,4 +1,4 @@
-This is pdfeTeX, Version 3.141592-1.21a-2.2 (Web2C 7.5.4) (format=pdflatex 2011.6.22)  28 JUN 2011 14:18
+This is pdfeTeX, Version 3.141592-1.21a-2.2 (Web2C 7.5.4) (format=pdflatex 2011.6.22)  29 JUN 2011 11:26
 entering extended mode
 **ClosedLoopSimplification.tex
 (./ClosedLoopSimplification.tex
@@ -295,7 +295,7 @@ File: pdfmark.def 2003/11/30 v6.74m Hyperref definitions for pdfmark specials
 \Fld@listcount=\count122
 \@outlinefile=\write4
 ))
-No file ClosedLoopSimplification.aux.
+(./ClosedLoopSimplification.aux)
 \openout1 = `ClosedLoopSimplification.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 35.
@@ -307,7 +307,7 @@ LaTeX Font Info:    ... okay on input line 35.
 LaTeX Font Info:    Checking defaults for OMS/pzccm/m/n on input line 35.
 LaTeX Font Info:    Try loading font information for OMS+pzccm on input line 35
 .
-(/usr/share/texmf/tex/latex/psnfss/omspzccm.fd
+ (/usr/share/texmf/tex/latex/psnfss/omspzccm.fd
 File: omspzccm.fd 2000/01/03 Fontinst v1.801 font definitions for OMS/pzccm.
 )
 LaTeX Font Info:    ... okay on input line 35.
@@ -317,8 +317,7 @@ LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 35.
 LaTeX Font Info:    ... okay on input line 35.
 LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 35.
 LaTeX Font Info:    ... okay on input line 35.
-
-(/usr/share/texmf/tex/context/base/supp-pdf.tex
+ (/usr/share/texmf/tex/context/base/supp-pdf.tex
 (/usr/share/texmf/tex/context/base/supp-mis.tex
 loading : Context Support Macros / Miscellaneous (2004.10.26)
 \protectiondepth=\count123
@@ -368,6 +367,8 @@ Package: nameref 2003/12/03 v2.21 Cross-referencing by name of section
 )
 LaTeX Info: Redefining \ref on input line 35.
 LaTeX Info: Redefining \pageref on input line 35.
+
+(./ClosedLoopSimplification.out) (./ClosedLoopSimplification.out)
 \openout4 = `ClosedLoopSimplification.out'.
 
 
@@ -413,6 +414,7 @@ Overfull \hbox (12.27496pt too wide) in paragraph at lines 71--72
 [][] 
  []
 
+(./ClosedLoopSimplification.toc)
 \tf@toc=\write6
 \openout6 = `ClosedLoopSimplification.toc'.
 
@@ -420,31 +422,6 @@ Overfull \hbox (12.27496pt too wide) in paragraph at lines 71--72
 Underfull \hbox (badness 10000) in paragraph at lines 73--75
 
  []
-
-
-LaTeX Warning: Citation `WangThesis' on page 1 undefined on input line 78.
-
-
-LaTeX Warning: Citation `WangPaper' on page 1 undefined on input line 78.
-
-LaTeX Font Info:    Font shape `OT1/phv/m/n' will be
-(Font)              scaled to size 10.79993pt on input line 83.
-
-LaTeX Warning: Reference `fig:Input' on page 1 undefined on input line 85.
-
-
-! LaTeX Error: File `images/input' not found.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.89 ...raphics[width=0.3\linewidth]{images/input}
-                                                  
-I could not locate the file with any of these extensions:
-.png,.pdf,.jpg,.mps,.tif
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
 
 [1
 Non-PDF special ignored!
@@ -455,6 +432,13 @@ Non-PDF special ignored!
 Non-PDF special ignored!
 
 
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
 Non-PDF special ignored!
 Non-PDF special ignored!
 Non-PDF special ignored!
@@ -476,19 +460,50 @@ Non-PDF special ignored!
 Non-PDF special ignored!
 Non-PDF special ignored!
 Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
 Non-PDF special ignored!]
+LaTeX Font Info:    Font shape `OT1/phv/m/n' will be
+(Font)              scaled to size 10.79993pt on input line 83.
+
+
+! LaTeX Error: File `images/input' not found.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.89 ...raphics[width=0.3\linewidth]{images/input}
+                                                  
+I could not locate the file with any of these extensions:
+.png,.pdf,.jpg,.mps,.tif
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
 LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <10.95> not available
 (Font)              Font shape `OMS/pzccm/m/n' tried instead on input line 99.
-
-
-LaTeX Warning: Citation `WangThesis' on page 2 undefined on input line 101.
-
 <images/straightness.png, id=20, 628.749pt x 569.327pt>
 File: images/straightness.png Graphic file (type png)
 
 <use images/straightness.png>
 LaTeX Font Info:    Font shape `OT1/phv/m/n' will be
-(Font)              scaled to size 9.85492pt on input line 109.
+(Font)              scaled to size 9.85492pt on input line 108.
 
 Overfull \vbox (1.59999pt too high) has occurred while \output is active []
 
@@ -521,7 +536,19 @@ Non-PDF special ignored!
 Non-PDF special ignored!
 Non-PDF special ignored!
 Non-PDF special ignored!
-Non-PDF special ignored! <./images/straightness.png>]
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!] (./ClosedLoopSimplification.brf)
 \tf@brf=\write7
 \openout7 = `ClosedLoopSimplification.brf'.
 
@@ -554,6 +581,35 @@ Non-PDF special ignored!
 Non-PDF special ignored!
 Non-PDF special ignored!
 Non-PDF special ignored!
+Non-PDF special ignored! <./images/straightness.png>]
+Overfull \vbox (1.59999pt too high) has occurred while \output is active []
+
+
+[4
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
 Non-PDF special ignored!
 Non-PDF special ignored!
 Non-PDF special ignored!
@@ -562,22 +618,19 @@ Non-PDF special ignored!
 Non-PDF special ignored!
 Non-PDF special ignored!] (./ClosedLoopSimplification.aux)
 
-LaTeX Warning: There were undefined references.
-
-
 LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  ) 
 Here is how much of TeX's memory you used:
- 4511 strings out of 94500
- 57876 string characters out of 1176766
- 120941 words of memory out of 1000000
- 7601 multiletter control sequences out of 10000+50000
+ 4529 strings out of 94500
+ 58255 string characters out of 1176766
+ 121437 words of memory out of 1000000
+ 7609 multiletter control sequences out of 10000+50000
  32321 words of font info for 61 fonts, out of 500000 for 2000
  581 hyphenation exceptions out of 1000
- 41i,11n,42p,684b,471s stack positions out of 1500i,500n,5000p,200000b,5000s
+ 41i,11n,42p,687b,514s stack positions out of 1500i,500n,5000p,200000b,5000s
 PDF statistics:
- 35 PDF objects out of 300000
+ 38 PDF objects out of 300000
  0 named destinations out of 131072
  6 words of extra memory for PDF output out of 65536
 </usr/share/texmf/fonts/type1/bluesky/cm/cmr10.pfb>{/usr/share/texmf/fonts/en
@@ -586,4 +639,4 @@ c/dvips/psnfss/8r.enc}</usr/share/texmf/fonts/type1/urw/times/utmri8a.pfb></usr
 w/courier/ucrr8a.pfb></usr/share/texmf/fonts/type1/urw/times/utmb8a.pfb></usr/s
 hare/texmf/fonts/type1/urw/times/utmr8a.pfb></usr/share/texmf/fonts/type1/urw/h
 elvetic/uhvro8a.pfb></usr/share/texmf/fonts/type1/urw/helvetic/uhvr8a.pfb>
-Output written on ClosedLoopSimplification.pdf (3 pages, 78870 bytes).
+Output written on ClosedLoopSimplification.pdf (4 pages, 83643 bytes).
