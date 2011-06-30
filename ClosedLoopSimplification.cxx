@@ -21,7 +21,6 @@
 #include "Helpers.h"
 
 // VTK
-
 #include <vtkCellArray.h>
 #include <vtkGraphToPolyData.h>
 #include <vtkKdTreePointLocator.h>

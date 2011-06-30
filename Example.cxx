@@ -41,9 +41,9 @@
 int main(int argc, char *argv[])
 {
   // Verify arguments
-  if(argc < 3)
+  if(argc < 4)
     {
-    std::cerr << "Required arguments: inputFileName outputFileName [straightnessErrorTolerance]" << std::endl;
+    std::cerr << "Required arguments: inputFileName outputFileName straightnessErrorTolerance" << std::endl;
     return EXIT_FAILURE;
     }
     
@@ -51,13 +51,10 @@ int main(int argc, char *argv[])
   std::string inputFileName = argv[1];
   std::string outputFileName = argv[2];
   
-  float straightnessErrorTolerance = 1.0;
-  if(argc == 4)
-    {
-    std::stringstream ss;
-    ss << argv[2];
-    ss >> straightnessErrorTolerance;
-    }
+  float straightnessErrorTolerance = .0;
+  std::stringstream ss;
+  ss << argv[3];
+  ss >> straightnessErrorTolerance;
   
   // Output arguments
   std::cout << "Input: " << inputFileName << std::endl;

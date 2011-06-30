@@ -21,3 +21,6 @@ LINK_DIRECTORIES(${LINK_DIRECTORIES} ${Boost_LIBRARY_DIRS})
 #### Executables ####
 ADD_EXECUTABLE(ClosedLoopSimplification Example.cxx ClosedLoopSimplification.cxx Helpers.cxx)
 TARGET_LINK_LIBRARIES(ClosedLoopSimplification vtkHybrid vtkInfovis ${ITK_LIBRARIES})
+
+ADD_EXECUTABLE(StartingPointDemoGraph StartingPointDemoGraph.cxx)
+TARGET_LINK_LIBRARIES(StartingPointDemoGraph vtkHybrid vtkInfovis ${ITK_LIBRARIES})
