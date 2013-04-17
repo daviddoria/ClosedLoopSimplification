@@ -206,7 +206,7 @@ void WriteGraph(Graph& g, vtkPolyData* points, std::string filename)
   vtkSmartPointer<vtkXMLPolyDataWriter> writer =
     vtkSmartPointer<vtkXMLPolyDataWriter>::New();
   writer->SetFileName(filename.c_str());
-  writer->SetInput(polyData);
+  writer->SetInputData(polyData);
   writer->Write();
    
 }
