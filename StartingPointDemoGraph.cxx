@@ -62,7 +62,7 @@ int main(int argc, char *argv[])
   vtkSmartPointer<vtkXMLPolyDataWriter> writer =
     vtkSmartPointer<vtkXMLPolyDataWriter>::New();
   writer->SetFileName("StartingPointDemoGraph.vtp");
-  writer->SetInputConnection(polydata->GetProducerPort());
+  writer->SetInputData(polydata);
   writer->Write();
   
   return EXIT_SUCCESS;
